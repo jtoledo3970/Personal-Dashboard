@@ -9,11 +9,16 @@
     </script>
     <script type = "text/javascript" language = "javascript">
        $(document).ready(function() {
-         // IOTA Price
+         var ethBalance = 20.06;
+         var iotaBalance = 650.8;
+         // JSON Functions
           $.getJSON('https://min-api.cryptocompare.com/data/price?fsym=IOT&tsyms=USD', function(jd) {
               // $('#stage').html('<p> Name: ' + jd.USD + '</p>');
               $("#iota").text(function () {
                 return $(this).text().replace("IOTA", "$" + jd.USD);
+              });
+              $("#iotaTotal").text(function () {
+                return $(this).text().replace("iotaTotal", "$" + Math.floor((jd.USD * iotaBalance) * 10) / 10);
               });
            });
           $.getJSON('https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=USD', function(jd) {
@@ -21,6 +26,9 @@
               $("#eth").text(function () {
                return $(this).text().replace("ETH", "$" + jd.USD);
              });
+             $("#ethTotal").text(function () {
+              return $(this).text().replace("ethTotal", "$" + Math.floor((jd.USD * ethBalance) * 10) / 10);
+            });
           });
           $.getJSON('http://toledo.ethosdistro.com/?json=yes', function(jd) {
               // $('#stage').html('<p> Name: ' + jd.USD + '</p>');
@@ -46,6 +54,7 @@
         <h1>Personal Dashboard</h1>
         <hr>
       </div>
+      <h2>Crypto Standings</h2>
       <div class="row">
           <div class="col-lg-3 col-md-6">
               <div class="panel panel-primary">
@@ -61,6 +70,28 @@
                       </div>
                   </div>
                   <a href="https://www.cryptocompare.com/coins/eth/overview/USD" target="_blank">
+                      <div class="panel-footer">
+                          <span class="pull-left">View Details</span>
+                          <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                          <div class="clearfix"></div>
+                      </div>
+                  </a>
+              </div>
+          </div>
+          <div class="col-lg-3 col-md-6">
+              <div class="panel panel-red">
+                  <div class="panel-heading">
+                      <div class="row">
+                          <div class="col-xs-3">
+                              <img src="img/eth.svg" class="big-icon" />
+                          </div>
+                          <div class="col-xs-9 text-right">
+                              <div class="huge" id="ethTotal">ethTotal</div>
+                              <div>Total Eth Value</div>
+                          </div>
+                      </div>
+                  </div>
+                  <a href="#">
                       <div class="panel-footer">
                           <span class="pull-left">View Details</span>
                           <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -92,37 +123,15 @@
               </div>
           </div>
           <div class="col-lg-3 col-md-6">
-              <div class="panel panel-red">
-                  <div class="panel-heading">
-                      <div class="row">
-                          <div class="col-xs-3">
-                              <i class="fa fa-server fa-5x black"></i>
-                          </div>
-                          <div class="col-xs-9 text-right">
-                              <div class="huge" id="gpuCount">gpuCount</div>
-                              <div>Rig GPUs</div>
-                          </div>
-                      </div>
-                  </div>
-                  <a href="#">
-                      <div class="panel-footer">
-                          <span class="pull-left">View Details</span>
-                          <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                          <div class="clearfix"></div>
-                      </div>
-                  </a>
-              </div>
-          </div>
-          <div class="col-lg-3 col-md-6">
               <div class="panel panel-yellow">
                   <div class="panel-heading">
                       <div class="row">
                           <div class="col-xs-3">
-                              <i class="fa fa-signal fa-5x black"></i>
+                              <img src="img/iota.svg" class="big-icon" />
                           </div>
                           <div class="col-xs-9 text-right">
-                              <div class="huge" id="hashRate">hashRate</div>
-                              <div>Hash Rate</div>
+                              <div class="huge" id="iotaTotal">iotaTotal</div>
+                              <div>Total IOTA Value</div>
                           </div>
                       </div>
                   </div>
@@ -136,6 +145,54 @@
               </div>
           </div>
       </div>
+      <h2>Mining Rig Stats</h2>
+      <div class="row">
+        <div class="col-lg-3 col-md-6">
+            <div class="panel panel-red">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-server fa-5x black"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge" id="gpuCount">gpuCount</div>
+                            <div>Rig GPUs</div>
+                        </div>
+                    </div>
+                </div>
+                <a href="#">
+                    <div class="panel-footer">
+                        <span class="pull-left">View Details</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="panel panel-yellow">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-signal fa-5x black"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge" id="hashRate">hashRate</div>
+                            <div>Hash Rate</div>
+                        </div>
+                    </div>
+                </div>
+                <a href="#">
+                    <div class="panel-footer">
+                        <span class="pull-left">View Details!</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+  </div>
           <!-- <div class="row">
             <h1>Personal Dashboard</h1>
             <table>
