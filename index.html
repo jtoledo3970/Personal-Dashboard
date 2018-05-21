@@ -27,60 +27,13 @@
 
     <!-- jQuery CDN Files -->
     <script type = "text/javascript"
-       src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js">
-    </script>
-    <script type = "text/javascript" language = "javascript">
-       $(document).ready(function() {
-         var ethBalance = 20.06;
-         var iotaBalance = 650.8;
-         var d = new Date();
-         // JSON Functions
-          $.getJSON('https://min-api.cryptocompare.com/data/price?fsym=IOT&tsyms=USD', function(jd) {
-              // $('#stage').html('<p> Name: ' + jd.USD + '</p>');
-              $("#iota").text(function () {
-                return $(this).text().replace("IOTA", "$" + jd.USD);
-              });
-              $("#iotaTotal").text(function () {
-                return $(this).text().replace("iotaTotal", "$" + Math.floor((jd.USD * iotaBalance) * 10) / 10);
-              });
-           });
-          $.getJSON('https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=USD', function(jd) {
-              // $('#stage').html('<p> Name: ' + jd.USD + '</p>');
-              $("#eth").text(function () {
-               return $(this).text().replace("ETH", "$" + jd.USD);
-             });
-             $("#ethTotal").text(function () {
-              return $(this).text().replace("ethTotal", "$" + Math.floor((jd.USD * ethBalance) * 10) / 10);
-            });
-          });
-          $.getJSON('http://toledo.ethosdistro.com/?json=yes', function(jd) {
-              // $('#stage').html('<p> Name: ' + jd.USD + '</p>');
-              $("#gpuCount").text(function () {
-               return $(this).text().replace("gpuCount", jd.alive_gpus + "/" + jd.total_gpus);
-             });
-             $("#hashRate").text(function () {
-              return $(this).text().replace("hashRate", jd.total_hash);
-            });
-          });
-          $.getJSON('https://api.ethermine.org/miner/0x46DCE7FCED843B71a282680fEea66C6C099932A1/dashboard', function(jd) {
-             // console.log(jd.data.currentStatistics.unpaid);
-             $("#unpaidBalance").text(function () {
-              return $(this).text().replace("unpaidBalance", Math.round((jd.data.currentStatistics.unpaid/1000000000000000000) * 1000) / 1000);
-            });
-            $("#activeWorkers").text(function () {
-              return $(this).text().replace("activeWorkers", jd.data.currentStatistics.activeWorkers);
-            });
-          });
-          $("#date").text(function() {
-            return $(this).text().replace("date", Date().toLocaleString());
-          });
-       });
-    </script>
+       src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
     <!-- CSS Files -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/styles.css">
     <title>Personal Dashboard</title>
   </head>
   <body>
@@ -129,8 +82,8 @@
                   </div>
                   <a href="https://gdax.com">
                       <div class="panel-footer">
-                          <span class="pull-left">View Details</span>
-                          <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                          <span class="pull-left" id="ethBal">ethBal</span>
+                          <span class="pull-right">View Details <i class="fa fa-arrow-circle-right"></i></span>
                           <div class="clearfix"></div>
                       </div>
                   </a>
@@ -158,7 +111,7 @@
                   </a>
               </div>
           </div>
-          <div class="col-lg-3 col-md-6">
+          <div class="col-lg-3 col-md-6" >
               <div class="panel panel-yellow">
                   <div class="panel-heading">
                       <div class="row">
@@ -173,8 +126,8 @@
                   </div>
                   <a href="https://binance.com">
                       <div class="panel-footer">
-                          <span class="pull-left">View Details!</span>
-                          <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                          <span class="pull-left" id="iotaBal">iotaBal</span>
+                          <span class="pull-right">View Details <i class="fa fa-arrow-circle-right"></i></span>
                           <div class="clearfix"></div>
                       </div>
                   </a>
@@ -272,6 +225,39 @@
             </div>
         </div>
     </div>
+      <div class="row">
+        <div class="col-lg-3 col-md-6">
+            <div class="panel panel-green">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3 text-center">
+                          <div class="huge" id="rigBoot">rigBoot</div>
+                          <div>Rig Boot</div>
+                        </div>
+                        <div class="col-xs-3 text-center">
+                            <div class="huge" id="rigMine">rigMine</div>
+                            <div>Rig Mine</div>
+                        </div>
+                        <div class="col-xs-3 text-center">
+                            <div class="huge" id="rx">rx</div>
+                            <div>RX</div>
+                        </div>
+                        <div class="col-xs-3 text-center">
+                            <div class="huge" id="tx">tx</div>
+                            <div>TX</div>
+                        </div>
+                    </div>
+                </div>
+                <a href="https://ethermine.org/miners/46DCE7FCED843B71a282680fEea66C6C099932A1/dashboard">
+                    <div class="panel-footer">
+                        <span class="pull-left">Elapsed Time</span>
+                        <span class="pull-right">View Details <i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+      </div>
   </div>
           <!-- <div class="row">
             <h1>Personal Dashboard</h1>
