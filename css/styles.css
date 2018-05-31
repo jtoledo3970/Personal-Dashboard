@@ -11,6 +11,11 @@ h1 {
   text-align: center;
 }
 
+#logo {
+  max-width: 190px;
+  padding-top: 14px;
+}
+
 th, td {
   padding: 3px;
 }
