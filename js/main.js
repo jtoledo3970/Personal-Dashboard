@@ -1,8 +1,12 @@
 $(document).ready(function() {
-  var ethBalance = 20.29;
+  var ethBalance = 20.37;
   var iotaBalance = 650.8;
   var d = new Date();
   // JSON Functions
+   // $.getJSON('https://api.etherscan.io/api?module=account&action=balance&address=0x53d5f654f14213AEf4d71583e79d6b72561541c3&tag=latest&apikey=T8XR9YG437WRGWQ51KQJGUAMQB2GX7I13Y', function(jd) {
+   //    ethBalance = jd.result;
+   //    console.log(jd.result / 1000000000000000000);
+   // });
    $.getJSON('https://min-api.cryptocompare.com/data/price?fsym=IOT&tsyms=USD', function(jd) {
        // $('#stage').html('<p> Name: ' + jd.USD + '</p>');
        $("#iota").text(function () {
@@ -12,15 +16,6 @@ $(document).ready(function() {
          return $(this).text().replace("iotaTotal", "$" + Math.floor((jd.USD * iotaBalance) * 10) / 10).toLocaleString();
        });
     });
-   $.getJSON('https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=USD', function(jd) {
-       // $('#stage').html('<p> Name: ' + jd.USD + '</p>');
-       $("#eth").text(function () {
-        return $(this).text().replace("ETH", "$" + jd.USD);
-      });
-      $("#ethTotal").text(function () {
-       return $(this).text().replace("ethTotal", "$" + Math.floor((jd.USD * ethBalance) * 10) / 10);
-     });
-   });
    $.getJSON('http://toledo.ethosdistro.com/?json=yes', function(jd) {
        // $('#stage').html('<p> Name: ' + jd.USD + '</p>');
        $("#gpuCount").text(function () {
@@ -66,12 +61,21 @@ $(document).ready(function() {
        return $(this).text().replace("tx", Math.round(tx * 10) / 10);
      });
    });
-   $.getJSON('https://api.ethermine.org/miner/0x46DCE7FCED843B71a282680fEea66C6C099932A1/dashboard', function(jd) {
+   $.getJSON('https://api.ethermine.org/miner/0x53d5f654f14213AEf4d71583e79d6b72561541c3/dashboard', function(jd) {
       $("#unpaidBalance").text(function () {
        return $(this).text().replace("unpaidBalance", Math.round((jd.data.currentStatistics.unpaid/1000000000000000000) * 1000) / 1000);
      });
      $("#activeWorkers").text(function () {
        return $(this).text().replace("activeWorkers", jd.data.currentStatistics.activeWorkers);
+     });
+   });
+   $.getJSON('https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=USD', function(jd) {
+       // $('#stage').html('<p> Name: ' + jd.USD + '</p>');
+       $("#eth").text(function () {
+        return $(this).text().replace("ETH", "$" + jd.USD);
+      });
+      $("#ethTotal").text(function () {
+       return $(this).text().replace("ethTotal", "$" + Math.floor((jd.USD * ethBalance) * 10) / 10);
      });
    });
    // Date
