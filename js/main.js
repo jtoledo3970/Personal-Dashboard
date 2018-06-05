@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  var ethBalance = 20.37;
+  var ethBalance = 20.475;
   var iotaBalance = 650.8;
   var d = new Date();
   // JSON Functions
@@ -78,13 +78,16 @@ $(document).ready(function() {
        return $(this).text().replace("ethTotal", "$" + Math.floor((jd.USD * ethBalance) * 10) / 10);
      });
    });
+   $.getJSON('https://api.etherscan.io/api?module=account&action=balance&address=0x53d5f654f14213AEf4d71583e79d6b72561541c3&tag=latest&apikey=T8XR9YG437WRGWQ51KQJGUAMQB2GX7I13Y', function(jd) {
+     // Eth Replace
+     ethBalance = jd.result/1000000000000000000
+     $("#ethBal").text(function() {
+       return $(this).text().replace("ethBal", Math.round(ethBalance * 100) / 100 + " ETH");
+     });
+   });
    // Date
    $("#date").text(function() {
      return $(this).text().replace("date", Date().toLocaleString());
-   });
-   // Eth Replace
-   $("#ethBal").text(function() {
-     return $(this).text().replace("ethBal", ethBalance + " ETH");
    });
    // IOTA Replace
    $("#iotaBal").text(function() {
