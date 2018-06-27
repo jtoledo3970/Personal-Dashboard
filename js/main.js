@@ -60,6 +60,26 @@ $(document).ready(function() {
      $("#tx").text(function () {
        return $(this).text().replace("tx", Math.round(tx * 10) / 10);
      });
+     var gpuTempString = jd.rigs.d09299.temp;
+     var gpuTempArray = gpuTempString.split(" ");
+     $("#gpu1").text(function () {
+       return $(this).text().replace("gpu1", Math.trunc(gpuTempArray[0]));
+     });
+     $("#gpu2").text(function () {
+       return $(this).text().replace("gpu2", Math.trunc(gpuTempArray[1]));
+     });
+     $("#gpu3").text(function () {
+       return $(this).text().replace("gpu3", Math.trunc(gpuTempArray[2]));
+     });
+     $("#gpu4").text(function () {
+       return $(this).text().replace("gpu4", Math.trunc(gpuTempArray[3]));
+     });
+     $("#gpu5").text(function () {
+       return $(this).text().replace("gpu5", Math.trunc(gpuTempArray[4]));
+     });
+     $("#gpu6").text(function () {
+       return $(this).text().replace("gpu6", Math.trunc(gpuTempArray[5]));
+     });
    });
    $.getJSON('https://api.ethermine.org/miner/0x53d5f654f14213AEf4d71583e79d6b72561541c3/dashboard', function(jd) {
       $("#unpaidBalance").text(function () {
@@ -84,6 +104,24 @@ $(document).ready(function() {
      $("#ethBal").text(function() {
        return $(this).text().replace("ethBal", Math.round(ethBalance * 100) / 100 + " ETH");
      });
+   });
+   // Payout Table
+   $.getJSON("https://api.ethermine.org/miner/53d5f654f14213AEf4d71583e79d6b72561541c3/payouts", function(data) {
+       var tr = data.data
+       for (var i = 0; i < data.data.length; i++) {
+         // Payout Options
+         var tempPayout = data.data[i].amount / 1000000000000000000;
+         var tempRound = tempPayout.toFixed(2);
+         // Date Options
+         var options = {year: '2-digit', month: 'numeric', day: 'numeric' };
+         var myDate = new Date(data.data[i].paidOn * 1000);
+         var finalDate = myDate.toLocaleDateString('en-US', options)
+         var tr = $('<tr/>');
+         $(tr).append("<td>" + finalDate + "</td>");
+         $(tr).append("<td>" + tempRound + "</td>");
+         $(tr).append("<td>" + data.data[i].txHash + "</td>");
+         $('.table1').append(tr);
+       }
    });
    // Date
    $("#date").text(function() {

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script>
+    $.getJSON("https://api.ethermine.org/miner/53d5f654f14213AEf4d71583e79d6b72561541c3/payouts", function(data) {
+        var tr = data.report
+        for (var i = 0; i < data.data.length; i++) {
+          var tr = $('<tr/>');
+          $(tr).append("<td>" + data.data[i].start + "</td>");
+          $(tr).append("<td>" + data.data[i].end + "</td>");
+          $(tr).append("<td>" + data.data[i].amount + "</td>");
+          $('.table1').append(tr);
+        }
+    });
+    </script>
+  </head>
+  <body>
+    <table class="table1">
+        <tr>
+            <th>Mes</th>
+            <th>Dia</th>
+            <th>Hora</th>
+        </tr>
+    </table>
+  </body>
+</html>
