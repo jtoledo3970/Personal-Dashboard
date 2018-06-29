@@ -116,10 +116,12 @@ $(document).ready(function() {
          var options = {year: '2-digit', month: 'numeric', day: 'numeric' };
          var myDate = new Date(data.data[i].paidOn * 1000);
          var finalDate = myDate.toLocaleDateString('en-US', options)
+         // link
+         var link = "<a href='https://www.etherchain.org/tx/" + data.data[i].txHash + "'>";
          var tr = $('<tr/>');
          $(tr).append("<td>" + finalDate + "</td>");
          $(tr).append("<td>" + tempRound + "</td>");
-         $(tr).append("<td>" + data.data[i].txHash + "</td>");
+         $(tr).append("<td>" + link + data.data[i].txHash + "</a></td>");
          $('.table1').append(tr);
        }
    });
