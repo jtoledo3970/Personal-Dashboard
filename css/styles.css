@@ -16,6 +16,10 @@ h1 {
   padding-top: 14px;
 }
 
+#table{
+   margin: 0 auto
+}
+
 th, td {
   padding: 3px;
 }

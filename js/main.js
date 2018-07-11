@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  var ethBalance = 20.61;
+  var ethBalance = 20.84;
   var iotaBalance = 650.8;
   var d = new Date();
   // JSON Functions
