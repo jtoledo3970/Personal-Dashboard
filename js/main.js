@@ -24,7 +24,7 @@ $(document).ready(function() {
      var secBoottime = jd.rigs.d09299.uptime;
      var hourBoottime = secBoottime * 0.000277778;
      var boot = 0;
-     if (hourBoottime > 24) {
+     if (hourBoottime >= 24) {
        var temp = hourBoottime/ 24;
        boot = temp.toFixed() + "D";
      } else {
@@ -38,7 +38,7 @@ $(document).ready(function() {
      var secMinetime = jd.rigs.d09299.miner_secs;
      var hourMinetime = secMinetime * 0.000277778;
      var mine = 0;
-     if (hourMinetime > 24) {
+     if (hourMinetime >= 24) {
        var temp = hourMinetime/ 24;
        mine = temp.toFixed() + "D";
      } else {
