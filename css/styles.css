@@ -11,6 +11,10 @@ h1 {
   text-align: center;
 }
 
+#modified {
+  text-align: center;
+}
+
 #logo {
   max-width: 190px;
   padding-top: 14px;
